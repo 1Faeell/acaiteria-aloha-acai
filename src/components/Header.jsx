@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { BsList, BsXLg, BsInstagram, BsWhatsapp } from "react-icons/bs";
 import { MdFastfood } from "react-icons/md";
+import ModalIfood from "./ModalIfood";
 
 function Header() {
   const [open, setOpen] = useState(false);
+  const [modalAberto, setModalAberto] = useState(false);
 
   return (
     <>
@@ -58,14 +60,19 @@ function Header() {
             >
               <BsWhatsapp size={20} />
             </a>
-            <a
-              href="https://www.ifood.com.br/delivery/salvador-ba/aloha-acai-pernambues-pernambues/5d5a7569-2570-4d8a-9491-6c156ba7df79?UTM_Medium=share"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[#ff5757]"
+
+            <button
+              onClick={() => setModalAberto(true)}
+              className="hover:text-[#ff5757] transition cursor-pointer"
+              aria-label="Abrir opções do iFood"
             >
               <MdFastfood size={22} />
-            </a>
+            </button>
+
+            <ModalIfood
+              isOpen={modalAberto}
+              onClose={() => setModalAberto(false)}
+            />
           </div>
         </nav>
 
@@ -111,14 +118,18 @@ function Header() {
               >
                 <BsWhatsapp size={22} />
               </a>
-              <a
-                href="https://www.ifood.com.br/delivery/salvador-ba/aloha-acai-pernambues-pernambues/5d5a7569-2570-4d8a-9491-6c156ba7df79?UTM_Medium=share"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-[#ff5757]"
+              <button
+                onClick={() => setModalAberto(true)}
+                className="hover:text-[#ff5757] transition cursor-pointer"
+                aria-label="Abrir opções do iFood"
               >
-                <MdFastfood size={24} />
-              </a>
+                <MdFastfood size={22} />
+              </button>
+
+              <ModalIfood
+                isOpen={modalAberto}
+                onClose={() => setModalAberto(false)}
+              />
             </div>
           </div>
         )}

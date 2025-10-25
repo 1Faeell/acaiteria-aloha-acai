@@ -1,8 +1,11 @@
-import React from "react";
 import { BsInstagram, BsWhatsapp } from "react-icons/bs";
 import { MdFastfood } from "react-icons/md";
+import { useState } from "react";
+import ModalIfood from "./ModalIfood";
 
 function Footer() {
+  const [modalAberto, setModalAberto] = useState(false);
+
   return (
     <footer className=" bg-gray-900 text-white relative">
       {/* Borda gradient superior */}
@@ -49,14 +52,17 @@ function Footer() {
           >
             <BsWhatsapp />
           </a>
-          <a
-            href="https://www.ifood.com.br/delivery/salvador-ba/aloha-acai-pernambues-pernambues/5d5a7569-2570-4d8a-9491-6c156ba7df79?UTM_Medium=share"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-red-500 transition"
+          <button
+            onClick={() => setModalAberto(true)}
+            className="hover:text-red-500 transition cursor-pointer"
           >
             <MdFastfood />
-          </a>
+          </button>
+
+          <ModalIfood
+            isOpen={modalAberto}
+            onClose={() => setModalAberto(false)}
+          />
         </div>
       </div>
 

@@ -9,6 +9,7 @@ import Cardapio from "./components/Cardapio.jsx";
 import Depoimentos from "./components/Depoimentos.jsx";
 import Localizacao from "./components/Localizacao.jsx";
 import Footer from "./components/Footer.jsx";
+import ModalIfood from "./components/ModalIfood.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 
 // import { useState } from 'react'
@@ -35,6 +36,7 @@ function App() {
       <Depoimentos />
       <Localizacao />
       <Footer />
+      <ModalIfood />
       <ScrollToTop />
     </div>
   );

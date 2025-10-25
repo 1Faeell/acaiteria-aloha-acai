@@ -1,11 +1,14 @@
 import { BsCart4 } from "react-icons/bs";
-import HorarioStatus from "./HorarioStatus";
+import ModalIfood from "./ModalIfood";
+import { useState } from "react";
 
 function Hero() {
+  const [modalAberto, setModalAberto] = useState(false);
+
   return (
     <div
       id="inicio"
-      className="bg-[url('assets/images/fundo-cardapio3.jpg')] bg-cover bg-center bg-no-repeat"
+      className="bg-[url('assets/images/fundo-plantas.jpg')] bg-cover bg-center bg-no-repeat"
     >
       <div className="relative w-full h-full px-6 md:px-16 py-20 bg-gradient-to-t from-[#fbb13b49] to-[#600b758f] text-center flex flex-col justify-center items-center gap-8">
         <div className="max-w-7xl h-screen flex flex-col justify-center items-center gap-10 ">
@@ -26,14 +29,20 @@ function Hero() {
             >
               Ver cardápio
             </a>
-            <a
-              href="https://www.ifood.com.br/delivery/salvador-ba/aloha-acai-pernambues-pernambues/5d5a7569-2570-4d8a-9491-6c156ba7df79?UTM_Medium=share"
-              target="_blank"
-              className="text-[#ffffff] underline bg-[#d43b3b] font-bold hover:brightness-120 transition-all px-10 py-3 rounded-4xl items-center flex gap-2"
+
+            {/* QUERO QUE ESSE BOTÃO / LINK ABAIXO "pedir delivery"  ABRA O MODAL <<<< */}
+            <button
+              onClick={() => setModalAberto(true)}
+              className="cursor-pointer flex items-center gap-2 px-10 py-3 rounded-4xl bg-[#d43b3b] text-white transition font-bold hover:brightness-110 max-md:px-8 max-md:py-3"
+              aria-label="Abrir opções do iFood"
             >
-              <BsCart4 size={20} />
-              Pedir Delivery...
-            </a>
+              <BsCart4 size={22} /> Pedir Delivery...
+            </button>
+
+            <ModalIfood
+              isOpen={modalAberto}
+              onClose={() => setModalAberto(false)}
+            />
           </div>
         </div>
       </div>

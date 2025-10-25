@@ -55,7 +55,7 @@ function Cardapio() {
   return (
     <section
       id="cardapio"
-      className="text-center bg-[url('assets/images/fundo-cardapio3.jpg')] bg-cover bg-center bg-no-repeat max-w-full select-none overflow-hidden"
+      className="text-center bg-[url('assets/images/fundo-plantas.jpg')] bg-cover bg-center bg-no-repeat max-w-full select-none overflow-hidden"
     >
       <div className="w-full h-full bg-gradient-to-br from-[#600b75] via-[#a00093af] to-[#fbb13b79] px-6 md:px-16 py-16 transition-all duration-500 ease-in-out">
         {/* Título */}

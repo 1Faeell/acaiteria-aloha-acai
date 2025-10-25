@@ -1,5 +1,7 @@
 import Image1 from "../assets/images/foto1-aloha-acai.png";
 import Image2 from "../assets/images/foto3-aloha-acai.png";
+import ModalIfood from "./ModalIfood"; // importa o componente que criamos
+import { useState } from "react";
 
 import {
   BsFillGeoAltFill,
@@ -10,6 +12,8 @@ import {
 import { MdFastfood } from "react-icons/md";
 
 function Sobre() {
+  const [modalAberto, setModalAberto] = useState(false);
+
   return (
     <section id="sobre" className="px-6 md:px-16 py-16">
       <div className="max-w-7xl mx-auto flex flex-row gap-2 max-lg:flex-col-reverse max-lg:gap-4">
@@ -66,19 +70,24 @@ function Sobre() {
           </p>
           {/* Redes Sociais */}
           <div className="flex gap-4 text-xl justify-end items-center mt-6">
-            <a
-              href="https://www.ifood.com.br/delivery/salvador-ba/aloha-acai-pernambues-pernambues/5d5a7569-2570-4d8a-9491-6c156ba7df79?UTM_Medium=share"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-red-800 text-red-500 transition"
+            <button
+              onClick={() => setModalAberto(true)}
+              className="hover:text-red-800 text-red-500 transition cursor-pointer"
+              aria-label="Abrir opções do iFood"
             >
               <MdFastfood size={30} />
-            </a>
+            </button>
+
+            <ModalIfood
+              isOpen={modalAberto}
+              onClose={() => setModalAberto(false)}
+            />
+
             <a
               href="https://www.instagram.com/alohaacaipernambues/"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-pink-800 text-pink-500 transition"
+              className="hover:text-pink-800 text-pink-500 transition cursor-pointer"
             >
               <BsInstagram size={30} />
             </a>
