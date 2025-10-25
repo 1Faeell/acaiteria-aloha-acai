@@ -2,6 +2,7 @@ import { useState } from "react";
 import { BsList, BsXLg, BsInstagram, BsWhatsapp } from "react-icons/bs";
 import { MdFastfood } from "react-icons/md";
 import ModalIfood from "./ModalIfood";
+import Logo from "../assets/images/logo-acai-aloha.png";
 
 function Header() {
   const [open, setOpen] = useState(false);
@@ -13,11 +14,7 @@ function Header() {
       <header className="fixed top-0 w-full bg-gradient-to-r from-[#600b75] to-[#8710a5] text-white flex justify-between items-center px-6 py-2 z-50 shadow-lg">
         {/* Logo + Nome */}
         <div className="flex items-center">
-          <img
-            src="src/assets/images/logo-acai-aloha.png"
-            alt="Logo"
-            className="w-16 h-16 object-contain"
-          />
+          <img src={Logo} alt="Logo" className="w-16 h-16 object-contain" />
           <p className="ml-4 text-3xl font-semibold max-[880px]:hidden font-dancing-script">
             Aloha <span className="text-[#FBB03B]">Açaí</span>
           </p>
