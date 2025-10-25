@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+.font-dancing-script {
+  font-family: "Dancing Script", cursive;
+  font-weight: 900;
+}
