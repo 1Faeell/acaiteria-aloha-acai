@@ -4,7 +4,7 @@ import {
   BsChevronDoubleLeft,
   BsChevronDoubleRight,
 } from "react-icons/bs";
-import depoimentos from "../data/depoimentos.json";
+import depoimentos from "../data/depoimentos-info.jsx";
 
 function Depoimentos() {
   return (
@@ -15,7 +15,7 @@ function Depoimentos() {
       <div className="text-center w-full h-full px-6 md:px-16 py-30 flex flex-col justify-center bg-gradient-to-b from-[#fff] via-[#ffffffea] to-[#fff] ">
         <h2 className="text-[2rem] md:text-[2.4rem] text-[#600b75] font-extrabold relative inline-block mb-5">
           Depoimentos
-          <span className="block w-20 h-1 bg-[#FBB03B] mt-1 rounded-full mx-auto"></span>
+          <span className="block w-20 h-1 bg-[#FBB03B] rounded-full mx-auto"></span>
         </h2>
         <p className=" text-lg md:text-lg max-w-4xl mx-auto mb-6 leading-relaxed font-medium">
           Nossos clientes são a alma do Aloha 💜 Cada sorriso, cada colherada e
@@ -43,7 +43,7 @@ function Depoimentos() {
               >
                 <div className="flex items-center gap-4 mb-4">
                   <img
-                    src={dep.foto}
+                    src={dep.imagem}
                     alt={dep.nome}
                     className="w-16 h-16 rounded-full object-cover border-4 border-[#e478ff] bg-white"
                   />

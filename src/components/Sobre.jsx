@@ -39,7 +39,7 @@ function Sobre() {
         <div className="bg-gradient-to-b from-transparent via-[#eeeeee] to-transparent px-10 py-10 m-auto rounded-3xl text-[1.1rem] leading-relaxed">
           <h2 className="text-3xl md:text-4xl text-[#600b75] font-extrabold relative inline-block mb-5">
             Sobre Nós
-            <span className="block w-16 h-1 bg-[#FBB03B] mt-1 rounded-full  "></span>
+            <span className="block w-16 h-1 bg-[#FBB03B] rounded-full  "></span>
           </h2>
 
           <p className="mb-4">

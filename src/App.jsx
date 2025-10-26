@@ -36,7 +36,6 @@ function App() {
       <Depoimentos />
       <Localizacao />
       <Footer />
-      <ModalIfood />
       <ScrollToTop />
     </div>
   );

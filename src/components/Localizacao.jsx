@@ -63,14 +63,14 @@ function Localizacao() {
       <div className="px-6 md:px-16 py-20 bg-gradient-to-b from-[#600b75ad] to-[#3d0d49] text-center">
         <h2 className="text-[2rem] md:text-[2.4rem] text-[#ffffff] font-extrabold relative inline-block mb-6">
           Localização & Contato
-          <span className="block w-30 h-1 bg-[#FBB03B] mt-1 rounded-full mx-auto"></span>
+          <span className="block w-30 h-1 bg-[#FBB03B] rounded-full mx-auto"></span>
         </h2>
 
         {/* Botões de filtro entre sedes */}
         <div className="flex justify-center gap-4 mb-12">
           <button
             onClick={() => setSedeSelecionada("pernambues")}
-            className={`px-6 py-2 rounded-xl font-bold border-2 transition-all ${
+            className={`px-6 py-2 rounded font-bold border-2 transition-all ${
               sedeSelecionada === "pernambues"
                 ? "bg-[#600b75] text-white border-[#FBB03B]"
                 : "bg-white text-[#600b75] border-[#ffffff] hover:bg-[#c000b0] hover:text-white"
@@ -80,7 +80,7 @@ function Localizacao() {
           </button>
           <button
             onClick={() => setSedeSelecionada("caminhoDeAreia")}
-            className={`px-6 py-2 rounded-xl font-bold border-2 transition-all ${
+            className={`px-6 py-2 rounded font-bold border-2 transition-all ${
               sedeSelecionada === "caminhoDeAreia"
                 ? "bg-[#600b75] text-white border-[#FBB03B]"
                 : "bg-white text-[#600b75] border-[#ffffff] hover:bg-[#c000b0] hover:text-white"

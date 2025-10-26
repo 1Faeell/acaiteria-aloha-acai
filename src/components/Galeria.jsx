@@ -1,4 +1,4 @@
-import galeria from "../data/galeria.json";
+import galeria from "../data/fotos-galeria.jsx";
 
 function Galeria() {
   return (

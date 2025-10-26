@@ -1,5 +1,5 @@
-import { useEffect, useState, useRef, useCallback } from "react";
-import cardapio from "../data/cardapio.json";
+import { useEffect, useState, useRef, useCallback, useMemo } from "react";
+import cardapio from "../data/produtos-cardapio.jsx";
 import {
   BsCart4,
   BsChevronDoubleLeft,
@@ -13,22 +13,27 @@ function Cardapio() {
   const [indiceCategoria, setIndiceCategoria] = useState(0);
   const scrollRef = useRef(null);
 
-  // Atualiza menu conforme a sede
+  // Atualiza menu conforme a sede selecionada
   useEffect(() => {
-    const novoMenu = cardapio[sedeSelecionada] || [];
+    const novoMenu = cardapio?.[sedeSelecionada] || [];
     setMenu(novoMenu);
     setCategoriaSelecionada("todas");
     setIndiceCategoria(0);
   }, [sedeSelecionada]);
 
-  const categorias = menu.map((c) => c.categoria);
+  // Extrai categorias do menu
+  const categorias = useMemo(() => menu.map((c) => c.categoria), [menu]);
 
-  // Produtos exibidos conforme filtro
-  const produtosParaExibir =
-    categoriaSelecionada === "todas"
-      ? menu.flatMap((cat) => cat.produtos || [])
-      : menu.find((cat) => cat.categoria === categoriaSelecionada)?.produtos ||
-        [];
+  // Filtra produtos conforme categoria
+  const produtosParaExibir = useMemo(() => {
+    if (categoriaSelecionada === "todas") {
+      return menu.flatMap((cat) => cat.produtos || []);
+    }
+    const categoria = menu.find(
+      (cat) => cat.categoria === categoriaSelecionada
+    );
+    return categoria?.produtos || [];
+  }, [menu, categoriaSelecionada]);
 
   // Navegação entre categorias
   const proximaCategoria = useCallback(() => {
@@ -46,22 +51,23 @@ function Cardapio() {
     setCategoriaSelecionada(categorias[prevIdx]);
   }, [categorias, indiceCategoria]);
 
+  // Reseta scroll ao trocar categoria
   useEffect(() => {
-    if (scrollRef.current) {
+    if (scrollRef.current && produtosParaExibir.length > 0) {
       scrollRef.current.scrollTo({ left: 0, behavior: "smooth" });
     }
-  }, [categoriaSelecionada]);
+  }, [categoriaSelecionada, produtosParaExibir]);
 
   return (
     <section
       id="cardapio"
-      className="text-center bg-[url('assets/images/fundo-plantas.jpg')] bg-cover bg-center bg-no-repeat max-w-full select-none overflow-hidden"
+      className="text-center bg-[url('assets/images/fundo-plantas-cardapio.jpg')] bg-cover bg-center bg-no-repeat max-w-full select-none overflow-hidden"
     >
       <div className="w-full h-full bg-gradient-to-br from-[#600b75] via-[#a00093af] to-[#fbb13b79] px-6 md:px-16 py-16 transition-all duration-500 ease-in-out">
         {/* Título */}
         <h2 className="text-[2rem] md:text-[2.4rem] text-[#ffffff] font-extrabold mb-10 relative inline-block">
           Cardápio
-          <span className="block w-16 h-1 bg-[#FBB03B] mt-1 rounded-full mx-auto"></span>
+          <span className="block w-16 h-1 bg-[#FBB03B] rounded-full mx-auto"></span>
         </h2>
 
         {/* Subtítulo */}
@@ -75,26 +81,19 @@ function Cardapio() {
 
         {/* Filtro de sede */}
         <div className="flex justify-center gap-4 mb-12">
-          <button
-            onClick={() => setSedeSelecionada("pernambues")}
-            className={`px-6 py-2 rounded font-bold border-2 transition-all ${
-              sedeSelecionada === "pernambues"
-                ? "bg-[#600b75] text-white border-[#FBB03B]"
-                : "cursor-pointer bg-white text-[#600b75] border-[#ffffff] hover:bg-[#c000b0] hover:text-white"
-            }`}
-          >
-            Pernambués
-          </button>
-          <button
-            onClick={() => setSedeSelecionada("caminhoDeAreia")}
-            className={`px-6 py-2 rounded font-bold border-2 transition-all ${
-              sedeSelecionada === "caminhoDeAreia"
-                ? "bg-[#600b75] text-white border-[#FBB03B]"
-                : "cursor-pointer bg-white text-[#600b75] border-[#ffffff] hover:bg-[#c000b0] hover:text-white"
-            }`}
-          >
-            Caminho de Areia
-          </button>
+          {["pernambues", "caminhoDeAreia"].map((sede) => (
+            <button
+              key={sede}
+              onClick={() => setSedeSelecionada(sede)}
+              className={`px-6 py-2 rounded font-bold border-2 transition-all ${
+                sedeSelecionada === sede
+                  ? "bg-[#600b75] text-white border-[#FBB03B]"
+                  : "cursor-pointer bg-white text-[#600b75] border-[#ffffff] hover:bg-[#c000b0] hover:text-white"
+              }`}
+            >
+              {sede === "pernambues" ? "Pernambués" : "Caminho de Areia"}
+            </button>
+          ))}
         </div>
 
         {/* Filtro de categorias */}
@@ -126,11 +125,13 @@ function Cardapio() {
             ))}
           </div>
 
+          {/* Instrução mobile */}
           <p className="md:hidden uppercase text-[#ffffff] flex items-center gap-2 justify-center">
             <BsChevronDoubleLeft /> Deslize para os lados{" "}
             <BsChevronDoubleRight />
           </p>
-          {/* Carrossel de produtos */}
+
+          {/* Lista de produtos */}
           <div className="relative flex items-center justify-center mb-20">
             {/* seta esquerda */}
             <button
@@ -141,62 +142,69 @@ function Cardapio() {
               <span className="max-[460px]:hidden">Categoria Anterior</span>
             </button>
 
-            {/* Lista de produtos */}
+            {/* Produtos */}
             <div
               ref={scrollRef}
               className="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 py-5 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']"
             >
-              {produtosParaExibir.map((produto, i) => (
-                <div
-                  key={i}
-                  className="w-[260px] md:w-[280px] lg:w-[300px] flex-shrink-0 bg-white rounded-2xl shadow-md snap-start hover:shadow-xl hover:-translate-y-2 transition-all duration-500 flex flex-col"
-                >
-                  {/* Imagem */}
-                  {produto.imagem && (
-                    <img
-                      src={produto.imagem}
-                      alt={produto.nome}
-                      className="w-full h-[180px] md:h-[200px] object-cover rounded-t-2xl"
-                    />
-                  )}
-
-                  {/* Conteúdo */}
-                  <div className="flex-1 flex flex-col overflow-hidden">
-                    <div className="p-5">
-                      <h4 className="text-[1.1rem] md:text-[1.15rem] font-bold text-[#600b75] uppercase tracking-wide">
-                        {produto.nome}
-                        {produto.tamanho && (
-                          <span className="text-[#ffa109] text-sm ml-1">
-                            ({produto.tamanho})
-                          </span>
-                        )}
-                      </h4>
-                      <p className="text-[#2ECC71] font-extrabold text-[1.05rem] mt-2">
-                        {produto.preco}
-                      </p>
-                    </div>
-
-                    {/* Botão/link */}
-                    {produto.link && produto.link.trim() !== "" ? (
-                      <a
-                        href={produto.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-2 mt-auto w-full bg-gradient-to-r from-[#d43b3b] to-[#f56c6c] text-white font-bold py-3 rounded-b-xl hover:scale-[1.03] transition-transform duration-200"
-                      >
-                        <BsCart4 size={20} /> Mais detalhes...
-                      </a>
-                    ) : (
-                      <button
-                        disabled
-                        className="mt-auto w-full bg-gray-300 text-gray-600 font-bold py-3 rounded-b-xl cursor-not-allowed"
-                      >
-                        Link Indisponível
-                      </button>
+              {produtosParaExibir.length > 0 ? (
+                produtosParaExibir.map((produto, i) => (
+                  <div
+                    key={i}
+                    className="w-[260px] md:w-[280px] lg:w-[300px] flex-shrink-0 bg-white rounded-2xl shadow-md snap-start hover:shadow-xl hover:-translate-y-2 transition-all duration-500 flex flex-col"
+                  >
+                    {/* Imagem */}
+                    {produto.imagem && (
+                      <img
+                        src={produto.imagem}
+                        alt={produto.nome}
+                        className="w-full h-[180px] md:h-[200px] object-cover rounded-t-2xl"
+                        onError={(e) => (e.target.style.display = "none")}
+                      />
                     )}
+
+                    {/* Conteúdo */}
+                    <div className="flex-1 flex flex-col overflow-hidden">
+                      <div className="p-5">
+                        <h4 className="text-[1.1rem] md:text-[1.15rem] font-bold text-[#600b75] uppercase tracking-wide">
+                          {produto.nome}
+                          {produto.tamanho && (
+                            <span className="text-[#ffa109] text-sm ml-1">
+                              ({produto.tamanho})
+                            </span>
+                          )}
+                        </h4>
+                        <p className="text-[#2ECC71] font-extrabold text-[1.05rem] mt-2">
+                          {produto.preco}
+                        </p>
+                      </div>
+
+                      {/* Botão/link */}
+                      {produto.link && produto.link.trim() !== "" ? (
+                        <a
+                          href={produto.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center gap-2 mt-auto w-full bg-gradient-to-r from-[#d43b3b] to-[#f56c6c] text-white font-bold py-3 rounded-b-xl hover:scale-[1.03] transition-transform duration-200"
+                        >
+                          <BsCart4 size={20} /> Mais detalhes...
+                        </a>
+                      ) : (
+                        <button
+                          disabled
+                          className="mt-auto w-full bg-gray-300 text-gray-600 font-bold py-3 rounded-b-xl cursor-not-allowed"
+                        >
+                          Link Indisponível
+                        </button>
+                      )}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))
+              ) : (
+                <p className="text-white font-semibold">
+                  Nenhum produto disponível nesta categoria.
+                </p>
+              )}
             </div>
 
             {/* seta direita */}
