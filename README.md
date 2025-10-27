@@ -1,16 +1,28 @@
-# React + Vite
+# Açaíteria Aloha Açaí
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Projeto de site de 2 unidades da Açaíteria Aloha — layout responsivo, cardapio interativo e filtragens de unidade, etc.
 
-Currently, two official plugins are available:
+## 🔍 Descrição do Projeto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Esse projeto é uma aplicação front-end da Açaíteria Aloha Açaí (unidade Pernambués e Caminho de Areia). O objetivo é oferecer aos usuários uma interface bonita e funcional. O site tem a intenção de mostrar os valores, informações, contato e o cardápio online com redirecionamento direto pro Ifood. Ele foi construído com foco em experiência do usuário, responsividade (celular/desktop) e com tecnologias modernas, além de ser personalizável.
 
-## React Compiler
+**O link de visualização está disponível aqui:** [Visualizar projeto](https://acaiteria-aloha-acai.vercel.app/)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✅ Funcionalidades
+* Redirecionamento para Redes Sociais
+* Cardapio interativo com redirecionamento para Ifood (com filtragem de Unidade e Categoria)
+* Contato/Localização Filtrado para cada Unidade (Pernambués / Caminho de Areia)
 
-## Expanding the ESLint configuration
+## 🛠 Tecnologias Utilizadas
+* Vite 
+* JavaScript (ES6+)
+* React
+* TailwindCSS
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🖥 Preview do projeto
+<img width="1423" height="786" alt="image" src="https://github.com/user-attachments/assets/270f5aaf-1022-40c7-bfd3-c1243bce1e48" />
+[Visualizar projeto](https://acaiteria-aloha-acai.vercel.app/)
+
+
+
+
