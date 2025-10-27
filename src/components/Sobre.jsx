@@ -17,7 +17,7 @@ function Sobre() {
   return (
     <section id="sobre" className="px-6 md:px-16 py-16">
       <div className="max-w-7xl mx-auto flex flex-row gap-2 max-lg:flex-col-reverse max-lg:gap-4">
-        <div className="flex flex-row justify-between items-center gap-2.5">
+        <div className="flex flex-row justify-between items-center gap-2.5 max-sm:flex-col">
           {/* Imagem 1 */}
           <img
             src={Image1}
