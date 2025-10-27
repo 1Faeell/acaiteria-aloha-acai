@@ -4,7 +4,7 @@ function Galeria() {
   return (
     <section
       id="galeria"
-      className="px-6 md:px-16 py-16 mb-16 text-center overflow-hidden"
+      className="px-6 md:px-16 py-16 my-16 text-center overflow-hidden"
     >
       <div className="max-w-7xl mx-auto">
         {/* <h2 className="text-[2rem] md:text-[2.4rem] text-[#600b75] font-extrabold relative inline-block mb-8">
