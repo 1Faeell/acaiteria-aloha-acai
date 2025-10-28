@@ -1,5 +1,5 @@
 import { MdFastfood } from "react-icons/md";
-import { BsGeoAlt, BsGeoAltFill, BsXLg } from "react-icons/bs";
+import { BsGeoAlt, BsGeoAltFill, BsXLg, BsCart4 } from "react-icons/bs";
 
 function ModalIfood({ isOpen, onClose }) {
   if (!isOpen) return null;
@@ -63,7 +63,7 @@ function ModalIfood({ isOpen, onClose }) {
                   className={`bg-gradient-to-r ${store.gradient} p-4 rounded-xl shadow-md hover:shadow-xl transition-all transform hover:-translate-y-1`}
                 >
                   <div className="flex items-center gap-3">
-                    <MdFastfood size={24} className="text-white" />
+                    <BsCart4 size={24} className="text-white" />
                     <div className="flex-1">
                       <p className="text-white font-bold text-lg">
                         {store.name}

@@ -2,12 +2,14 @@ import { BsInstagram, BsWhatsapp } from "react-icons/bs";
 import { MdFastfood } from "react-icons/md";
 import { useState } from "react";
 import ModalIfood from "./ModalIfood";
+import ModalInstagram from "./ModalInstagram";
 
 function Footer() {
-  const [modalAberto, setModalAberto] = useState(false);
+  const [modalIfoodAberto, setModalIfoodAberto] = useState(false);
+  const [modalInstagramAberto, setModalInstagramAberto] = useState(false);
 
   return (
-    <footer className=" bg-gray-900 text-white relative">
+    <footer className="bg-gray-900 text-white relative">
       {/* Borda gradient superior */}
       <div className="h-1 bg-gradient-to-r from-purple-500 via-pink-500 to-green-400"></div>
 
@@ -36,33 +38,29 @@ function Footer() {
 
         {/* Redes Sociais */}
         <div className="flex gap-4 text-xl">
-          <a
-            href="https://instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-pink-500 transition"
+          <button
+            onClick={() => setModalInstagramAberto(true)}
+            className="hover:text-pink-500 transition cursor-pointer"
+            aria-label="Instagram Aloha Açaí"
           >
             <BsInstagram />
-          </a>
+          </button>
           <a
-            href="https://wa.me/559999999999"
+            href="https://wa.me/5571993723226"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-green-500 transition"
+            aria-label="WhatsApp Aloha Açaí"
           >
             <BsWhatsapp />
           </a>
           <button
-            onClick={() => setModalAberto(true)}
+            onClick={() => setModalIfoodAberto(true)}
             className="hover:text-red-500 transition cursor-pointer"
+            aria-label="Abrir opções do iFood"
           >
             <MdFastfood />
           </button>
-
-          <ModalIfood
-            isOpen={modalAberto}
-            onClose={() => setModalAberto(false)}
-          />
         </div>
       </div>
 
@@ -70,6 +68,16 @@ function Footer() {
       <div className="mt-6 text-center text-gray-400 text-xs pb-4">
         © {new Date().getFullYear()} Aloha Açaí. Todos os direitos reservados.
       </div>
+
+      {/* Modais */}
+      <ModalIfood
+        isOpen={modalIfoodAberto}
+        onClose={() => setModalIfoodAberto(false)}
+      />
+      <ModalInstagram
+        isOpen={modalInstagramAberto}
+        onClose={() => setModalInstagramAberto(false)}
+      />
     </footer>
   );
 }

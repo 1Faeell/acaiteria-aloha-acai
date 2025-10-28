@@ -33,10 +33,32 @@
       property="og:description"
       content="Venha conhecer a Aloha Açaí em Pernambués e Caminho de Areia! Açaí cremoso, frutas frescas e combinações irresistíveis. Seu refúgio tropical no coração de Salvador!"
     />
+    <meta property="og:image" content="" id="og-image" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Logo Aloha Açaí" />
+    <meta property="og:url" content="" id="og-url" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+
+    <!-- Informações de contato para rich snippets -->
+    <meta property="business:contact_data:locality" content="Salvador" />
+    <meta property="business:contact_data:region" content="BA" />
+    <meta property="business:contact_data:country_name" content="Brasil" />
+
+    <!-- Titulo -->
     <title>Aloha Açaí | Açaíteria</title>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="src/main.jsx"></script>
+    <script>
+      // Injeta automaticamente a URL atual
+      const baseUrl = window.location.origin;
+      document
+        .getElementById("og-image")
+        .setAttribute("content", baseUrl + "/logo-aloha-acai.png");
+      document.getElementById("og-url").setAttribute("content", baseUrl);
+    </script>
   </body>
 </html>

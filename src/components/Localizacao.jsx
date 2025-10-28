@@ -18,8 +18,8 @@ const unidades = [
     id: "pernambues",
     nome: "Aloha Açaí Pernambués",
     endereco: "R. Thomaz Gonzaga, 240 - Pernambués, Salvador - BA, 41100-000",
-    telefone: "(71) 9 9677-2987",
-    whatsapp: "5571996772987",
+    telefone: "(71) 9 2002-1953",
+    whatsapp: "5571920021953",
     horario: {
       semana: "10:30 às 20:30",
       sabado: "10:30 às 20:30",
