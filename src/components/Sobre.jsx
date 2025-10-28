@@ -1,6 +1,7 @@
 import Image1 from "../assets/images/foto1-aloha-acai.png";
 import Image2 from "../assets/images/foto3-aloha-acai.png";
-import ModalIfood from "./ModalIfood"; // importa o componente que criamos
+import ModalIfood from "./ModalIfood";
+import ModalInstagram from "./ModalInstagram";
 import { useState } from "react";
 
 import {
@@ -12,7 +13,8 @@ import {
 import { MdFastfood } from "react-icons/md";
 
 function Sobre() {
-  const [modalAberto, setModalAberto] = useState(false);
+  const [modalIfoodAberto, setModalIfoodAberto] = useState(false);
+  const [modalInstagramAberto, setModalInstagramAberto] = useState(false);
 
   return (
     <section id="sobre" className="px-6 md:px-16 py-16">
@@ -71,26 +73,21 @@ function Sobre() {
           {/* Redes Sociais */}
           <div className="flex gap-4 text-xl justify-end items-center mt-6">
             <button
-              onClick={() => setModalAberto(true)}
+              onClick={() => setModalIfoodAberto(true)}
               className="hover:text-red-800 text-red-500 transition cursor-pointer"
               aria-label="Abrir opções do iFood"
             >
               <MdFastfood size={30} />
             </button>
 
-            <ModalIfood
-              isOpen={modalAberto}
-              onClose={() => setModalAberto(false)}
-            />
-
-            <a
-              href="https://www.instagram.com/alohaacaipernambues/"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={() => setModalInstagramAberto(true)}
               className="hover:text-pink-800 text-pink-500 transition cursor-pointer"
+              aria-label="Instagram Aloha Açaí"
             >
               <BsInstagram size={30} />
-            </a>
+            </button>
+
             <a
               href="https://wa.me/5571993723226"
               target="_blank"
@@ -102,6 +99,16 @@ function Sobre() {
           </div>
         </div>
       </div>
+
+      {/* Modais */}
+      <ModalIfood
+        isOpen={modalIfoodAberto}
+        onClose={() => setModalIfoodAberto(false)}
+      />
+      <ModalInstagram
+        isOpen={modalInstagramAberto}
+        onClose={() => setModalInstagramAberto(false)}
+      />
     </section>
   );
 }

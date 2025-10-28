@@ -1,21 +1,20 @@
-import { MdFastfood } from "react-icons/md";
-import { BsGeoAlt, BsGeoAltFill, BsXLg } from "react-icons/bs";
+import { BsInstagram, BsXLg } from "react-icons/bs";
 
-function ModalIfood({ isOpen, onClose }) {
+function ModalInstagram({ isOpen, onClose }) {
   if (!isOpen) return null;
 
-  const ifoodStores = [
+  const instagramAccounts = [
     {
-      name: "Aloha Açaí - Pernambués",
-      location: "Pernambués",
-      url: "https://www.ifood.com.br/delivery/salvador-ba/aloha-acai-pernambues-pernambues/5d5a7569-2570-4d8a-9491-6c156ba7df79?UTM_Medium=share",
-      gradient: "from-[#ea1d2c] to-[#a00e1b]",
+      name: "Aloha Açaí Pernambués",
+      username: "@alohaacaipernambues",
+      url: "https://www.instagram.com/alohaacaipernambues/",
+      gradient: "from-purple-600 to-pink-500",
     },
     {
-      name: "Aloha Açaí - Caminho de Areia",
-      location: "Caminho de Areia",
-      url: "https://www.ifood.com.br/delivery/salvador-ba/aloha-acai-cbx-caminho-de-areia/ce4ea411-29fa-4bc7-afd5-48153bdc7116",
-      gradient: "from-[#8740a5] to-[#600b75]",
+      name: "Aloha Açaí Caminho de Areia",
+      username: "@aloha.acai.cbx",
+      url: "https://www.instagram.com/aloha.acai.cbx/",
+      gradient: "from-pink-500 to-orange-500",
     },
   ];
 
@@ -42,34 +41,33 @@ function ModalIfood({ isOpen, onClose }) {
 
           {/* Título */}
           <div className="flex items-center gap-3 mb-6">
-            <div className="bg-gradient-to-br from-[#ea1d2c] to-[#d43b3b] p-2 rounded-xl">
-              <MdFastfood size={28} className="text-white" />
+            <div className="bg-gradient-to-tr from-purple-600 via-pink-500 to-orange-500 p-2 rounded-xl">
+              <BsInstagram size={28} className="text-white" />
             </div>
-            <h2 className="text-2xl font-bold text-gray-800">Peça no iFood</h2>
+            <h2 className="text-2xl font-bold text-gray-800">Nossas Redes</h2>
           </div>
 
-          {/* Lista de lojas */}
+          {/* Lista de contas */}
           <div className="space-y-3">
-            {ifoodStores.map((store, index) => (
+            {instagramAccounts.map((account, index) => (
               <a
                 key={index}
-                href={store.url}
+                href={account.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block group"
-                onClick={onClose}
               >
                 <div
-                  className={`bg-gradient-to-r ${store.gradient} p-4 rounded-xl shadow-md hover:shadow-xl transition-all transform hover:-translate-y-1`}
+                  className={`bg-gradient-to-r ${account.gradient} p-4 rounded-xl shadow-md hover:shadow-xl transition-all transform hover:-translate-y-1`}
                 >
                   <div className="flex items-center gap-3">
-                    <MdFastfood size={24} className="text-white" />
+                    <BsInstagram size={24} className="text-white" />
                     <div className="flex-1">
                       <p className="text-white font-bold text-lg">
-                        {store.name}
+                        {account.name}
                       </p>
-                      <p className="text-white text-sm opacity-90 flex items-center gap-2">
-                        <BsGeoAlt /> {store.location}
+                      <p className="text-white text-sm opacity-90">
+                        {account.username}
                       </p>
                     </div>
                     <svg
@@ -93,7 +91,7 @@ function ModalIfood({ isOpen, onClose }) {
 
           {/* Rodapé */}
           <p className="text-center text-gray-500 text-sm mt-6">
-            Escolha a loja mais próxima de você! 🍇
+            Siga-nos para novidades e promoções! 🍇
           </p>
         </div>
       </div>
@@ -101,4 +99,4 @@ function ModalIfood({ isOpen, onClose }) {
   );
 }
 
-export default ModalIfood;
+export default ModalInstagram;

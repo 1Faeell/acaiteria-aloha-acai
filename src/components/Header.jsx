@@ -2,11 +2,13 @@ import { useState } from "react";
 import { BsList, BsXLg, BsInstagram, BsWhatsapp } from "react-icons/bs";
 import { MdFastfood } from "react-icons/md";
 import ModalIfood from "./ModalIfood";
+import ModalInstagram from "./ModalInstagram";
 import Logo from "../assets/images/logo-acai-aloha.png";
 
 function Header() {
   const [open, setOpen] = useState(false);
-  const [modalAberto, setModalAberto] = useState(false);
+  const [modalIfoodAberto, setModalIfoodAberto] = useState(false);
+  const [modalInstagramAberto, setModalInstagramAberto] = useState(false);
 
   return (
     <>
@@ -47,15 +49,13 @@ function Header() {
             Localização
           </a>
           <div className="flex items-center gap-3">
-            <a
-              href="https://www.instagram.com/alohaacaipernambues/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-pink-400 transition-colors"
+            <button
+              onClick={() => setModalInstagramAberto(true)}
+              className="hover:text-pink-400 transition-colors cursor-pointer"
               aria-label="Instagram Aloha Açaí"
             >
               <BsInstagram size={20} />
-            </a>
+            </button>
             <a
               href="https://wa.me/5571993723226"
               target="_blank"
@@ -67,7 +67,7 @@ function Header() {
             </a>
 
             <button
-              onClick={() => setModalAberto(true)}
+              onClick={() => setModalIfoodAberto(true)}
               className="hover:text-[#ff5757] transition-colors cursor-pointer"
               aria-label="Abrir opções do iFood"
             >
@@ -119,15 +119,16 @@ function Header() {
           ))}
 
           <div className="flex items-center gap-6 mt-2">
-            <a
-              href="https://www.instagram.com/alohaacaipernambues/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-pink-400 transition-colors"
+            <button
+              onClick={() => {
+                setModalInstagramAberto(true);
+                setOpen(false);
+              }}
+              className="hover:text-pink-400 transition-colors cursor-pointer"
               aria-label="Instagram Aloha Açaí"
             >
               <BsInstagram size={24} />
-            </a>
+            </button>
             <a
               href="https://wa.me/5571993723226"
               target="_blank"
@@ -139,7 +140,7 @@ function Header() {
             </a>
             <button
               onClick={() => {
-                setModalAberto(true);
+                setModalIfoodAberto(true);
                 setOpen(false);
               }}
               className="hover:text-[#ff5757] transition-colors cursor-pointer"
@@ -151,8 +152,15 @@ function Header() {
         </div>
       </header>
 
-      {/* Modal do iFood - Renderizado uma única vez */}
-      <ModalIfood isOpen={modalAberto} onClose={() => setModalAberto(false)} />
+      {/* Modais */}
+      <ModalIfood
+        isOpen={modalIfoodAberto}
+        onClose={() => setModalIfoodAberto(false)}
+      />
+      <ModalInstagram
+        isOpen={modalInstagramAberto}
+        onClose={() => setModalInstagramAberto(false)}
+      />
 
       {/* Overlay para fechar menu mobile ao clicar fora */}
       {open && (

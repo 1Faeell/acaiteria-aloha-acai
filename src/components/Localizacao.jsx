@@ -10,6 +10,8 @@ import {
   BsPinMapFill,
 } from "react-icons/bs";
 import { MdFastfood } from "react-icons/md";
+import ModalIfood from "./ModalIfood";
+import ModalInstagram from "./ModalInstagram";
 
 const unidades = [
   {
@@ -53,6 +55,9 @@ const unidades = [
 
 function Localizacao() {
   const [sedeSelecionada, setSedeSelecionada] = useState("pernambues");
+  const [modalIfoodAberto, setModalIfoodAberto] = useState(false);
+  const [modalInstagramAberto, setModalInstagramAberto] = useState(false);
+
   const unidadeAtual = unidades.find((u) => u.id === sedeSelecionada);
 
   return (
@@ -161,14 +166,12 @@ function Localizacao() {
               >
                 <BsPinMapFill size={20} /> Mapa
               </a>
-              <a
-                href={unidadeAtual.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 bg-pink-500 text-white px-5 py-2 rounded-full shadow-md hover:bg-pink-600 transition"
+              <button
+                onClick={() => setModalInstagramAberto(true)}
+                className="flex items-center gap-2 bg-pink-500 text-white px-5 py-2 rounded-full shadow-md hover:bg-pink-600 transition cursor-pointer"
               >
                 <BsInstagram /> Instagram
-              </a>
+              </button>
               <a
                 href={`https://wa.me/${unidadeAtual.whatsapp}`}
                 target="_blank"
@@ -177,18 +180,26 @@ function Localizacao() {
               >
                 <BsWhatsapp size={20} /> WhatsApp
               </a>
-              <a
-                href={unidadeAtual.ifood}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 bg-red-500 text-white px-5 py-2 rounded-full shadow-md hover:bg-red-600 transition"
+              <button
+                onClick={() => setModalIfoodAberto(true)}
+                className="flex items-center gap-2 bg-red-500 text-white px-5 py-2 rounded-full shadow-md hover:bg-red-600 transition cursor-pointer"
               >
                 <MdFastfood size={20} /> Ifood
-              </a>
+              </button>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Modais */}
+      <ModalIfood
+        isOpen={modalIfoodAberto}
+        onClose={() => setModalIfoodAberto(false)}
+      />
+      <ModalInstagram
+        isOpen={modalInstagramAberto}
+        onClose={() => setModalInstagramAberto(false)}
+      />
     </section>
   );
 }
